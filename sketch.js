@@ -8,7 +8,7 @@
 
   function setup() {
     //create the canvas
-  canvas = createCanvas(1000,800);
+  canvas = createCanvas(800,600);
 
   //create the datbase
   database = firebase.database();
