@@ -7,6 +7,7 @@
   var saveButton;
   var drawin;
   var clearButton;
+  var reAdd;
   var fot = 1;
   
 
@@ -32,6 +33,7 @@
   clearButton = createButton("clear");
   clearButton.position(250,560);
 
+  
   }
 
   function draw() {
@@ -75,13 +77,12 @@
       personName:"",
       drawing:""
     });
-    //drawPath = false;
-    fot = 0;
+    drawPath = [];
+    
   });
-  if(fot === 0){
-    var clIm = createSprite(600,300,1000,800);
-    clIm.shapeColor = "white";
-  }
+
+ 
+  
 
   drawSprites();
 }
