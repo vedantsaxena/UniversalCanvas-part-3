@@ -6,9 +6,13 @@
   var drawMat;
   var saveButton;
   var drawin;
+  var clearButton;
+  var fot = 1;
+  
 
   function setup() {
-    //create the canvas
+
+  //create the canvas
   canvas = createCanvas(800,600);
 
   //create the database
@@ -20,17 +24,20 @@
   // creating the sprite for the drawing
   drawMat = createSprite(400,300,10,10);
   
-//creating the save button
+  //creating the save button
   saveButton = createButton("save");
   saveButton.position(900,560);
 
+  //creating the clear button
+  clearButton = createButton("clear");
+  clearButton.position(250,560);
 
   }
 
   function draw() {
     background(255);
 
-   // storing the coordinates of the sprite in an array
+    // storing the coordinates of the sprite in an array
     var position = [drawMat.x,drawMat.y];
 
     // storing the coordinates array in the drawPath array
@@ -53,14 +60,28 @@
       image(drawin,drawPath[i][0],drawPath[i][1],10,10);
   }
 
-//the saving part when the button is pressed
+  //the saving part when the button is pressed
   saveButton.mousePressed(()=>{
     database.ref("Drawer/drawingName").set({
       personName:"Vedant",
       drawing:"Drawing1"
     });
      database.ref("/").update();
-  })
+  });
+
+  //clearing the canvas
+  clearButton.mousePressed(()=>{
+     database.ref("Drawer/drawingName").set({
+      personName:"",
+      drawing:""
+    });
+    //drawPath = false;
+    fot = 0;
+  });
+  if(fot === 0){
+    var clIm = createSprite(600,300,1000,800);
+    clIm.shapeColor = "white";
+  }
 
   drawSprites();
 }
@@ -71,7 +92,9 @@
     database.ref("Drawer/position").set({
       x : drawMat.x,
       y : drawMat.y
-    })
+      
+    });
+    
     
   }
 
